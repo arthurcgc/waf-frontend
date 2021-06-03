@@ -1,0 +1,118 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="content-section">
+    <form method="POST" action="" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Update Waf</legend>
+        <div class="form-group">
+          {{ form.name.label(class="form-control-label") }}
+          {% if form.name.errors %}
+            {{ form.name(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.name.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.name(class="form-control form-control-lg") }}
+          {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.namespace.label(class="form-control-label") }}
+          {% if form.namespace.errors %}
+            {{ form.namespace(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.namespace.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.namespace(class="form-control form-control-lg") }}
+          {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.replicas.label(class="form-control-label") }}
+          {% if form.replicas.errors %}
+            {{ form.replicas(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.replicas.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.replicas(class="form-control form-control-lg") }}
+          {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.planName.label(class="form-control-label") }}
+          {% if form.planName.errors %}
+            {{ form.planName(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.planName.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.planName(class="form-control form-control-lg") }}
+          {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.bindSvcName.label(class="form-control-label") }}
+          {% if form.bindSvcName.errors %}
+            {{ form.bindSvcName(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.bindSvcName.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.bindSvcName(class="form-control form-control-lg") }}
+          {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.bindNamespace.label(class="form-control-label") }}
+          {% if form.bindNamespace.errors %}
+            {{ form.bindNamespace(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.bindNamespace.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.bindNamespace(class="form-control form-control-lg") }}
+          {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.bindProtocol.label(class="form-control-label") }}
+          {% if form.bindProtocol.errors %}
+            {{ form.bindProtocol(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.bindProtocol.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.bindProtocol(class="form-control form-control-lg") }}
+          {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.customRules.label(class="form-control-label") }}
+          {% if form.customRules.errors %}
+            {{ form.customRules(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.customRules.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.customRules(class="form-control form-control-lg") }}
+          {% endif %}
+        </div>
+      </fieldset>
+      <div class="form-group">
+        {{ form.submit(class="btn btn-outline-info") }}
+      </div>
+    </form>
+  </div>
+{% endblock content %}
