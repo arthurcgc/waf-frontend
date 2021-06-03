@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="content-section">
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Create Waf</legend>
+        <div class="form-group">
+          {{ form.name.label(class="form-control-label") }}
+          {{ form.name(class="form-control form-control-lg") }}
+        </div>
+        <div class="form-group">
+          {{ form.namespace.label(class="form-control-label") }}
+          {{ form.namespace(class="form-control form-control-lg") }}
+        </div>
+        <div class="form-group">
+          {{ form.replicas.label(class="form-control-label") }}
+          {{ form.replicas(class="form-control form-control-lg") }}
+        </div>
+        <div class="form-group">
+          {{ form.planName.label(class="form-control-label") }}
+          {{ form.planName(class="form-control form-control-lg") }}
+        </div>
+        <div class="form-group">
+          {{ form.bindSvcName.label(class="form-control-label") }}
+          {{ form.bindSvcName(class="form-control form-control-lg") }}
+        </div>
+        <div class="form-group">
+          {{ form.bindNamespace.label(class="form-control-label") }}
+          {{ form.bindNamespace(class="form-control form-control-lg") }}
+        </div>
+        <div class="form-group">
+          {{ form.bindProtocol.label(class="form-control-label") }}
+          {{ form.bindProtocol(class="form-control form-control-lg") }}
+        </div>
+      </fieldset>
+      <div class="form-group">
+        {{ form.submit(class="btn btn-outline-info") }}
+      </div>
+    </form>
+  </div>
+{% endblock content %}
