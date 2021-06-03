@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: waf-operator-system
+  name: waf-frontend
+spec:
+  selector:
+    matchLabels:
+      app: waf-frontend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: waf-frontend
+    spec:
+      containers:
+      - name: waf-frontend
+        image: arthurcgc/waf-frontend:latest
+        ports:
+        - containerPort: 8000
+        env:
+          - name: SECRET_KEY
+            value: "123"
+          - name: WAF_API_URL
+            value: "http://waf-api.waf-operator-system.svc.cluster.local"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: waf-operator-system
+  name: waf-frontend
+spec:
+  type: NodePort
+  selector:
+    app: waf-frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
