@@ -33,7 +33,17 @@ def create():
                 "customRules": customRulesList
             }
             os.remove(path) 
-          
+        if form.removeRules.data != None:
+            if "rules" in payload:
+                payload["rules"]["removeAfter"] = {
+                        "removeByTag": form.removeRules.data
+                    }
+            else:
+                payload["rules"] = {
+                    "removeAfter": {
+                        "removeByTag": form.removeRules.data
+                    }
+                }
         r = requests.post(waf_api, json=payload)
         if r.status_code == 201:
             flash(f"Successfully created {form.name.data}!", "success")
@@ -83,7 +93,17 @@ def update():
             payload["rules"] = {
                 "customRules": []
             }
-          
+        if form.removeRules.data != None:
+            if "rules" in payload:
+                payload["rules"]["removeAfter"] = {
+                        "removeByTag": form.removeRules.data
+                    }
+            else:
+                payload["rules"] = {
+                    "removeAfter": {
+                        "removeByTag": form.removeRules.data
+                    }
+                }
         r = requests.put(waf_api, json=payload)
         if r.status_code == 201:
             flash(f"Successfully updated {form.name.data}!", "success")

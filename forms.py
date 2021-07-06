@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, IntegerField
 from flask_wtf.file import FileField
 from flask_wtf.file import FileAllowed
-from wtforms.fields.core import SelectField
+from wtforms.fields.core import RadioField, SelectField, SelectMultipleField
 from wtforms.validators import DataRequired, Length
 
 class CreateWafForm(FlaskForm):
@@ -14,6 +14,13 @@ class CreateWafForm(FlaskForm):
     bindNamespace = StringField("Service Namespace", validators=[DataRequired(), Length(min=3, max=15)])
     bindProtocol = SelectField("Protocol",choices=["http", "https"], validators=[DataRequired()])
     customRules = FileField("Custom Rules", validators=[FileAllowed(["conf"], "Only .conf files allowed")])
+    removeRules = SelectMultipleField("Remove Rules", choices=[
+        ("attack-lfi", "Directory Traversal"), ("attack-rfi", "Remote File Inclusion"),
+        ("attack-rce", "Remote Command Execution"), ("attack-injection-php", "PHP Injection"),
+        ("attack-injection-nodejs", "NodeJS Injection"), ("attack-xss", "Cross Site Scripting"),
+        ("attack-sqli", "SQL Injection"), ("attack-fixation", "Session Fixation"),
+     ]
+     )
     submit = SubmitField("Create")
 
 class DeleteWafForm(FlaskForm):
@@ -30,4 +37,11 @@ class UpdateWafForm(FlaskForm):
     bindNamespace = StringField("Service Namespace", validators=[DataRequired(), Length(min=3, max=15)])
     bindProtocol = SelectField("Protocol",choices=["http", "https"], validators=[DataRequired()])
     customRules = FileField("Custom Rules", validators=[FileAllowed(["conf"], "Only .conf files allowed")])
+    removeRules = SelectMultipleField("Remove Rules", choices=[
+        ("attack-lfi", "Directory Traversal"), ("attack-rfi", "Remote File Inclusion"),
+        ("attack-rce", "Remote Command Execution"), ("attack-injection-php", "PHP Injection"),
+        ("attack-injection-nodejs", "NodeJS Injection"), ("attack-xss", "Cross Site Scripting"),
+        ("attack-sqli", "SQL Injection"), ("attack-fixation", "Session Fixation"),
+     ]
+     )
     submit = SubmitField("Update")
